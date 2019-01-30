@@ -194,6 +194,11 @@ class Draw extends PointerInteraction {
     super(pointerOptions);
 
     /**
+     * 允许绘制跟踪Geometry
+     * @type {boolean} 
+     */
+    this.enableSketch = true
+    /**
      * @type {boolean}
      * @private
      */
@@ -597,6 +602,9 @@ class Draw extends PointerInteraction {
    * @private
    */
   handlePointerMove_(event) {
+    if (!this.enableSketch) {
+      return true;
+    }
     if (this.downPx_ &&
         ((!this.freehand_ && this.shouldHandle_) ||
         (this.freehand_ && !this.shouldHandle_))) {
